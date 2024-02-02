@@ -9,7 +9,7 @@ const prisma = new PrismaClient()
 
 app.use(express.json());
 
-app.use('/books', bookRouter);
+app.use('/api/books', bookRouter);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
