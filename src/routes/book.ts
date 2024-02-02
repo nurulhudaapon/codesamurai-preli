@@ -85,11 +85,17 @@ router.get('/', async (req, res) => {
       ]
     },
     orderBy: {
-      ...(sort ? { [sort as string]: order || 'asc' } : {})
+      ...(sort ?
+        {
+          [sort as string]: order || 'asc'
+        } : {
+          id: 'asc'
+        }
+      )
     }
   });
 
-  res.status(200).json(books)
+  res.status(200).json({ books })
 })
 
 export const bookRouter = router;
