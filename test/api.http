@@ -1,0 +1,33 @@
+
+### Add books
+POST http://localhost:5000/api/books HTTP/1.1
+content-type: application/json
+
+{
+    "id": 9,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "price": 19.99
+}
+
+### Update books
+PUT http://localhost:5000/api/books/3 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 3,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "price": 19.99
+}
+
+### Fetch Books
+http://localhost:5000/api/books
+
+### Fetch a particular book
+GET http://localhost:5000/api/books/6
+
+### Fetch books by genre
+GET http://localhost:5000/api/books/?genre=Fiction
