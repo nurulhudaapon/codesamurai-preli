@@ -57,42 +57,20 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+  const filterQuery = req.query || {};
+  let sort, order;
+  if (!filterQuery.sort) sort = 'id';
+  if (!filterQuery.order) order = 'asc';
 
-  let {
-    title,
-    author,
-    genre,
-    sort,
-    order,
-  } = req.query;
+  delete filterQuery.sort;
+  delete filterQuery.order;
 
   const option: Parameters<typeof prisma.books.findMany>[0] = {
-    where: {},
-    orderBy: {}
-  };
-
-  if (!sort) sort = 'id';
-  if (!order) order = 'asc';
-
-  if (!option.where) return;
-
-  if (title) {
-    option.where.title = title as string;
-  }
-
-  if (author) {
-    option.where.author = author as string;
-  }
-
-  if (genre) {
-    option.where.genre = genre as string;
-  }
-
-  if (sort) {
-    option.orderBy = {
+    where: filterQuery,
+    orderBy: {
       [sort as string]: String(order || 'asc').toLowerCase()
     }
-  }
+  };
 
   const books = await prisma.books.findMany(option);
 
