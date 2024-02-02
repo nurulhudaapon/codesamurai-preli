@@ -1,5 +1,5 @@
 Team Name: Green Thunder
-
+Institute Name: Green University of Bangladesh
 Team Members:
 
 - Nurul Huda (me@nurulhudaapon.com)
