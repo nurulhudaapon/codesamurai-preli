@@ -4,7 +4,7 @@ POST http://localhost:5000/api/books HTTP/1.1
 content-type: application/json
 
 {
-    "id": 9,
+    "id": 4,
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
     "genre": "Fiction",
@@ -17,9 +17,9 @@ content-type: application/json
 
 {
     "id": 3,
-    "title": "To Kill a Mockingbird",
+    "title": "To Test a Mockingbird",
     "author": "Harper Lee",
-    "genre": "Fiction",
+    "genre": "Triction",
     "price": 19.99
 }
 
@@ -27,7 +27,19 @@ content-type: application/json
 http://localhost:5000/api/books
 
 ### Fetch a particular book
-GET http://localhost:5000/api/books/6
+GET http://localhost:5000/api/books/3
 
 ### Fetch books by genre
-GET http://localhost:5000/api/books/?genre=Fiction
+GET http://localhost:5000/api/books?sort=id&order=desc
+
+### Fetch books
+GET http://localhost:5000/api/books/?title=Fiction&sort=price&order=asc
+
+###
+GET http://localhost:5000/api/books/?author=Suaeb&sort=price&order=asc
+
+###
+GET http://localhost:5000/api/books/?genre=funny&sort=title&order=desc
+
+###
+GET http://localhost:5000/api/books/?genre=funny&sort=genre&order=desc
