@@ -14,5 +14,8 @@ services:
     build: .
     ports:
       - "5000:5000"
+    # map prisma migration to the db service
+    volumes:
+      - ./prisma:/usr/src/app/prisma
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@db:5432/green_thunder?schema=public"

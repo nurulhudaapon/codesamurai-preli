@@ -10,8 +10,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id      Int      @default(autoincrement()) @id
-  email   String   @unique
-  name    String?
+// {
+// "id": integer, # A numeric ID
+// "title": "string", # A book title string
+// "author": "string", # A book author string
+// "genre": "string", # A genre string
+// "price": float # A real number price
+// }
+
+model books {
+  id    Int    @id @default(autoincrement())
+  title String
+  author String
+  genre String
+  price Float
 }
