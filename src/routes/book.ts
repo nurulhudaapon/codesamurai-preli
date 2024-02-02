@@ -90,7 +90,7 @@ router.get('/', async (req, res) => {
 
   if (sort) {
     option.orderBy = {
-      [sort as string]: order || 'asc'
+      [sort as string]: String(order || 'asc').toLowerCase()
     }
   }
 

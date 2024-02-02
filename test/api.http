@@ -42,4 +42,4 @@ GET http://localhost:5000/api/books/?author=Suaeb&sort=price&order=asc
 GET http://localhost:5000/api/books/?genre=funny&sort=title&order=desc
 
 ###
-GET http://localhost:5000/api/books/?genre=funny&sort=genre&order=desc
+GET http://localhost:5000/api/books/?genre=Fiction&sort=id&order=desc
