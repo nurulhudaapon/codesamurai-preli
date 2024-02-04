@@ -4,7 +4,7 @@ POST http://localhost:5000/api/books HTTP/1.1
 content-type: application/json
 
 {
-    "id": 4,
+    "id": 3,
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
     "genre": "Fiction",

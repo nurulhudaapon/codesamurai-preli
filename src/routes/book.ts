@@ -58,8 +58,8 @@ router.get("/:id", async (req, res) => {
 
 router.get('/', async (req, res) => {
   const filterQuery = req.query || {};
-  let sort, order;
-  if (!filterQuery.sort) sort = 'id';
+  let sort = filterQuery.sort, order;
+  if (!sort) sort = 'id';
   if (!filterQuery.order) order = 'asc';
 
   delete filterQuery.sort;

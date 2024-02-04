@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:20-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -10,4 +10,6 @@ COPY . .
 EXPOSE 5000
 
 RUN npx prisma generate
-CMD [ "npm", "run", "dev" ]
+
+# deploy prisma migrate and start the app
+CMD npx prisma migrate reset -f && npm run dev
