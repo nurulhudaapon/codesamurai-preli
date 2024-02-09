@@ -17,3 +17,64 @@ model books {
   genre String
   price Float
 }
+
+// {
+// "user_id": integer, # user's numeric id
+// "user_name": string, # user's full name
+// "balance": integer # user's wallet balance
+// }
+
+model users {
+  id        Int    @id @default(autoincrement())
+  user_id   Int
+  user_name String
+  balance   Int
+}
+
+
+// {
+// "station_id": integer, # station's numeric id
+// "station_name": string, # station's name
+// "longitude": float, # coordinate longitude
+// "latitude": float # coordinate latitude
+// }
+
+model stations {
+  id           Int     @id @default(autoincrement())
+  station_id   Int
+  station_name String
+  longitude    Float
+  latitude     Float
+}
+
+// {
+// "train_id": integer, # train's numeric id
+// "train_name": string, # train's name
+// "capacity": integer, # seating capacity
+// "stops": [ # list of stops
+// {
+// "station_id": integer, # station's id
+// "arrival_time": string, # arrives at
+// "departure_time" string, # leaves at
+// "fare": integer # ticket cost
+// },
+// ]
+// }
+
+model trains {
+  id          Int      @id @default(autoincrement())
+  train_id    Int
+  train_name  String
+  capacity    Int
+  stops       stops[]
+}
+
+model stops {
+  id             Int      @id @default(autoincrement())
+  station_id     Int
+  arrival_time   String
+  departure_time String
+  fare           Int
+  trains         trains[]
+}
+

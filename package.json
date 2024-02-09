@@ -8,7 +8,8 @@
     "dev": "node --watch-path=./src src/server.js",
     "start": "node src/server.js",
     "test": "npx prisma migrate reset -f && node --test",
-    "package": "mkdir -p dist && git archive --format zip --output dist/GREEN_THUNDER.zip HEAD",
+    "test:watch": "npx prisma migrate reset -f && node --tes --watch",
+    "package": "rm -rf dist && mkdir -p dist && git archive --format zip --output dist/GREEN_THUNDER.zip HEAD",
     "judge": "bash judge.sh"
   },
   "keywords": [],
