@@ -22,6 +22,7 @@ const TEST_CASES = [
   // Feature API tests
   // Station API tests
   {
+    only: true,
     name: "List all stations - empty array",
     path: "/api/stations",
     method: "get",

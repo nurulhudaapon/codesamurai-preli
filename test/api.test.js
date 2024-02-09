@@ -6,7 +6,9 @@ const HOST = "http://localhost:8000";
 
 describe("API", () => {
   TEST_CASES.forEach((tc) => {
-    it(tc.name, async () => {
+    // if (tc.path.includes('stations')) return;
+    // if (!tc.only) return;
+    it(tc.path + " | " + tc.name, async () => {
       const response = await fetch(`${HOST}${tc.path}`, {
         method: tc.method,
         headers: {
@@ -15,7 +17,10 @@ describe("API", () => {
         body: tc.body ? JSON.stringify(tc.body) : undefined,
       });
 
-      assert.deepStrictEqual(await convertResponseToExpected(response), tc.expected);
+      assert.deepStrictEqual(
+        await convertResponseToExpected(response),
+        tc.expected
+      );
     });
   });
 });
