@@ -2,7 +2,7 @@
   "name": "green_thunder",
   "version": "1.0.0",
   "type": "module",
-  "main": "server.ts",
+  "main": "src/server.ts",
   "scripts": {
     "prepare": "prisma generate && prisma migrate reset -f",
     "dev": "node --watch-path=./src src/server.js",
