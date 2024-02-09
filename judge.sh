@@ -1,19 +1,33 @@
 #!/bin/bash
-# Zip the projects
+
+echo "✅ :: =========================== :: Delete existing dist folder :: ================================= ::"
+rm -rf dist
+
+echo "✅ :: =========================== :: Zip the projects into dist folder :: =========================== ::"
 npm run package
 
-# Go the Root Dir
-cd ..
+echo "✅ :: =========================== :: Go to the dist folder  :: ====================================== ::"
+mkdir -p
+cd dist
 
-# Unsip the project
-ZIPFILE=GREEN_THUNDER; FOLDER=$(basename "$ZIPFILE" .zip); mkdir -p "$FOLDER" && unzip -d "$FOLDER" "$ZIPFILE"
+echo "✅ :: =========================== :: Unsip the project :: =========================================== ::"
+ZIPFILE=GREEN_THUNDER; FOLDER=$(basename "$ZIPFILE" .zip); mkdir -p "$FOLDER" && unzip -d "$FOLDER" "$ZIPFILE"  > /dev/null 2>&1
 cd GREEN_THUNDER
 
-# Clean and rebuild the docker containers
+echo "✅ :: =========================== :: Clean Docker Volumes :: ======================================== ::"
 # docker volume prune -af
 
-# Start the docker containers
+echo "✅ :: =========================== :: Stop existing docker containers :: ============================= ::"
+docker compose down
+
+echo "✅ :: =========================== :: Start the docker containers :: ================================= ::"
 docker compose up -d --build
 
-# Run the tests
+echo "✅ :: =========================== :: Run the tests :: =============================================== ::"
 npm test --yes
+
+echo "✅ :: =========================== :: Remove containers :: =========================================== ::"
+docker compose down
+
+echo "✅ :: =========================== :: Remove the dist folder :: ====================================== ::"
+cd ../.. && rm -rf dist
