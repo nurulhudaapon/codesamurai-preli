@@ -1,6 +1,8 @@
-import { TEST_CASES } from "./data";
-// const HOST = "http://localhost:8000"; // For local testing
-const HOST = "http://host.docker.internal:8000"; // For devcontainer
+import { TEST_CASES } from "./data.js";
+import { describe, it } from "node:test";
+import assert from "node:assert";
+
+const HOST = "http://localhost:8000";
 
 describe("API", () => {
   TEST_CASES.forEach((tc) => {
@@ -13,12 +15,12 @@ describe("API", () => {
         body: tc.body ? JSON.stringify(tc.body) : undefined,
       });
 
-      expect(await convertResponseToExpected(response)).toEqual(tc.expected);
+      assert.deepStrictEqual(await convertResponseToExpected(response), tc.expected);
     });
   });
 });
 
-async function convertResponseToExpected(response: Response) {
+async function convertResponseToExpected(response) {
   return {
     status: response.status,
     body: await response.json(),

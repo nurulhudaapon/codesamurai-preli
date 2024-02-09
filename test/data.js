@@ -1,4 +1,4 @@
-export const TEST_CASES = [
+const TEST_CASES = [
   // Initial no data tests
   {
     name: "should return empty array",
@@ -43,3 +43,7 @@ export const TEST_CASES = [
   //     },
   //   },
 ];
+
+export {
+  TEST_CASES
+}
