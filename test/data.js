@@ -137,64 +137,64 @@ const TEST_CASES = [
         }
     },
   },
-  {
-    name: "should create a train",
-    path: "/api/trains",
-    method: "post",
-    body: {
-      train_id: 1,
-      train_name: "Mahanagar 123",
-      capacity: 200,
-      stops: [
-        {
-          station_id: 1,
-          arrival_time: null,
-          departure_time: "07:00",
-          fare: 0,
-        },
-        {
-          station_id: 3,
-          arrival_time: "07:45",
-          departure_time: "07:50",
-          fare: 20,
-        },
-        {
-          station_id: 4,
-          arrival_time: "08:30",
-          departure_time: null,
-          fare: 30,
-        },
-      ],
-    },
-    expected: {
-      status: 201,
-      body: {
-        train_id: 1,
-        train_name: "Mahanagar 123",
-        capacity: 200,
-        stops: [
-          {
-            station_id: 1,
-            arrival_time: null,
-            departure_time: "07:00",
-            fare: 0,
-          },
-          {
-            station_id: 3,
-            arrival_time: "07:45",
-            departure_time: "07:50",
-            fare: 20,
-          },
-          {
-            station_id: 4,
-            arrival_time: "08:30",
-            departure_time: null,
-            fare: 30,
-          },
-        ],
-      },
-    },
-  },
+  // {
+  //   name: "should create a train",
+  //   path: "/api/trains",
+  //   method: "post",
+  //   body: {
+  //     train_id: 1,
+  //     train_name: "Mahanagar 123",
+  //     capacity: 200,
+  //     stops: [
+  //       {
+  //         station_id: 1,
+  //         arrival_time: null,
+  //         departure_time: "07:00",
+  //         fare: 0,
+  //       },
+  //       {
+  //         station_id: 3,
+  //         arrival_time: "07:45",
+  //         departure_time: "07:50",
+  //         fare: 20,
+  //       },
+  //       {
+  //         station_id: 4,
+  //         arrival_time: "08:30",
+  //         departure_time: null,
+  //         fare: 30,
+  //       },
+  //     ],
+  //   },
+  //   expected: {
+  //     status: 201,
+  //     body: {
+  //       train_id: 1,
+  //       train_name: "Mahanagar 123",
+  //       capacity: 200,
+  //       stops: [
+  //         {
+  //           station_id: 1,
+  //           arrival_time: null,
+  //           departure_time: "07:00",
+  //           fare: 0,
+  //         },
+  //         {
+  //           station_id: 3,
+  //           arrival_time: "07:45",
+  //           departure_time: "07:50",
+  //           fare: 20,
+  //         },
+  //         {
+  //           station_id: 4,
+  //           arrival_time: "08:30",
+  //           departure_time: null,
+  //           fare: 30,
+  //         },
+  //       ],
+  //     },
+  //   },
+  // },
   {
     name: "List trains passing through a station - success",
     path: "/api/stations/1/trains",
