@@ -19,6 +19,20 @@ const TEST_CASES = [
       },
     },
   },
+  // Feature API tests
+  // Station API tests
+  {
+    name: "List all stations - empty array",
+    path: "/api/stations",
+    method: "get",
+    body: undefined,
+    expected: {
+      status: 200,
+      body: {
+        stations: [],
+      },
+    },
+  },
   {
     name: "should create a station",
     path: "/api/stations",
@@ -36,6 +50,50 @@ const TEST_CASES = [
         station_name: "Dhaka GPO",
         longitude: 90.399452,
         latitude: 23.777176,
+      },
+    },
+  },
+  {
+    name: "List all stations - success",
+    path: "/api/stations",
+    method: "get",
+    body: undefined,
+    expected: {
+      status: 200,
+      body: {
+        stations: [
+          {
+            station_id: 1,
+            station_name: "Dhaka GPO",
+            longitude: 90.399452,
+            latitude: 23.777176,
+          },
+          {
+            station_id: 2,
+            station_name: "Motijheel",
+            longitude: 90.417458,
+            latitude: 23.73333,
+          },
+          {
+            station_id: 3,
+            station_name: "Rajarbagh",
+            longitude: 90.4166667,
+            latitude: 23.7333333,
+          },
+        ],
+      },
+    },
+  },
+  {
+    name: "List trains passing through a station - no trains",
+    path: "/api/stations/4/trains",
+    method: "get",
+    body: undefined,
+    expected: {
+      status: 200,
+      body: {
+        station_id: 4,
+        trains: [],
       },
     },
   },
@@ -94,64 +152,6 @@ const TEST_CASES = [
             fare: 30,
           },
         ],
-      },
-    },
-  },
-  // Feature API tests
-  // Station API tests
-  {
-    name: "List all stations - empty array",
-    path: "/api/stations",
-    method: "get",
-    body: undefined,
-    expected: {
-      status: 200,
-      body: {
-        stations: [],
-      },
-    },
-  },
-  {
-    name: "List all stations - success",
-    path: "/api/stations",
-    method: "get",
-    body: undefined,
-    expected: {
-      status: 200,
-      body: {
-        stations: [
-          {
-            station_id: 1,
-            station_name: "Dhaka GPO",
-            longitude: 90.399452,
-            latitude: 23.777176,
-          },
-          {
-            station_id: 2,
-            station_name: "Motijheel",
-            longitude: 90.417458,
-            latitude: 23.73333,
-          },
-          {
-            station_id: 3,
-            station_name: "Rajarbagh",
-            longitude: 90.4166667,
-            latitude: 23.7333333,
-          },
-        ],
-      },
-    },
-  },
-  {
-    name: "List trains passing through a station - no trains",
-    path: "/api/stations/4/trains",
-    method: "get",
-    body: undefined,
-    expected: {
-      status: 200,
-      body: {
-        station_id: 4,
-        trains: [],
       },
     },
   },

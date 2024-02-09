@@ -1,45 +1,15 @@
 
-### Add books
-POST http://localhost:8000/api/books HTTP/1.1
-content-type: application/json
 
-{
-    "id": 3,
-    "title": "To Kill a Mockingbird",
-    "author": "Harper Lee",
-    "genre": "Fiction",
-    "price": 19.99
-}
 
-### Update books
-PUT http://localhost:8000/api/books/3 HTTP/1.1
-content-type: application/json
 
-{
-    "id": 3,
-    "title": "To Test a Mockingbird",
-    "author": "Harper Lee",
-    "genre": "Triction",
-    "price": 19.99
-}
+ 
+-- planning ---
 
-### Fetch Books
-http://localhost:8000/api/books
+curl -X GET \
+  "http://localhost:8000/api/routes?from=1&to=5&optimize=cost"
 
-### Fetch a particular book
-GET http://localhost:8000/api/books/3
+curl -X GET \
+  "http://localhost:8000/api/routes?from=1&to=5&optimize=time"
 
-### Fetch books by genre
-GET http://localhost:8000/api/books?sort=id&order=desc
 
-### Fetch books
-GET http://localhost:8000/api/books/?title=Fiction&sort=price&order=asc
 
-###
-GET http://localhost:8000/api/books/?author=Suaeb&sort=price&order=asc
-
-###
-GET http://localhost:8000/api/books/?genre=funny&sort=title&order=desc
-
-###
-GET http://localhost:8000/api/books/?genre=Fiction&sort=id&order=desc
