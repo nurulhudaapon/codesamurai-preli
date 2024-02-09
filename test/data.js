@@ -126,16 +126,15 @@ const TEST_CASES = [
     },
   },
   {
-    name: "List trains passing through a station - no trains",
+    name: "List trains passing through a station - no stations",
     path: "/api/stations/4/trains",
     method: "get",
     body: undefined,
     expected: {
-      status: 200,
+      status: 404,
       body: {
-        station_id: 4,
-        trains: [],
-      },
+        "message": "station with id: 4 was not found"
+        }
     },
   },
   {
