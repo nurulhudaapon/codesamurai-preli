@@ -1,6 +1,6 @@
 
 ### Add books
-POST http://localhost:5000/api/books HTTP/1.1
+POST http://localhost:8000/api/books HTTP/1.1
 content-type: application/json
 
 {
@@ -12,7 +12,7 @@ content-type: application/json
 }
 
 ### Update books
-PUT http://localhost:5000/api/books/3 HTTP/1.1
+PUT http://localhost:8000/api/books/3 HTTP/1.1
 content-type: application/json
 
 {
@@ -24,22 +24,22 @@ content-type: application/json
 }
 
 ### Fetch Books
-http://localhost:5000/api/books
+http://localhost:8000/api/books
 
 ### Fetch a particular book
-GET http://localhost:5000/api/books/3
+GET http://localhost:8000/api/books/3
 
 ### Fetch books by genre
-GET http://localhost:5000/api/books?sort=id&order=desc
+GET http://localhost:8000/api/books?sort=id&order=desc
 
 ### Fetch books
-GET http://localhost:5000/api/books/?title=Fiction&sort=price&order=asc
+GET http://localhost:8000/api/books/?title=Fiction&sort=price&order=asc
 
 ###
-GET http://localhost:5000/api/books/?author=Suaeb&sort=price&order=asc
+GET http://localhost:8000/api/books/?author=Suaeb&sort=price&order=asc
 
 ###
-GET http://localhost:5000/api/books/?genre=funny&sort=title&order=desc
+GET http://localhost:8000/api/books/?genre=funny&sort=title&order=desc
 
 ###
-GET http://localhost:5000/api/books/?genre=Fiction&sort=id&order=desc
+GET http://localhost:8000/api/books/?genre=Fiction&sort=id&order=desc

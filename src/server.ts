@@ -1,11 +1,8 @@
 import express from "express"
-import { PrismaClient } from "@prisma/client"
 import { bookRouter } from "./routes/book"
 
 const app = express()
-const PORT = 5000
-
-const prisma = new PrismaClient()
+const PORT = 8000
 
 app.use(express.json());
 
