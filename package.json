@@ -7,7 +7,8 @@
     "prepare": "prisma generate && prisma migrate reset -f",
     "dev": "node --watch-path=./src src/server.js",
     "start": "node src/server.js",
-    "test": "npx prisma migrate reset -f && node --test"
+    "test": "npx prisma migrate reset -f && node --test",
+    "package": "git archive --format zip --output ../GREEN_THUNDER.zip HEAD"
   },
   "keywords": [],
   "author": "",
