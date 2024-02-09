@@ -4,6 +4,7 @@ import { stationRouter } from "./routes/station.js";
 import { trainRouter } from "./routes/train.js";
 import { walletRouter } from "./routes/wallet.js";
 import { graph, floydWarshall } from "./utils.js";
+import { ticketRouter } from "./routes/ticket.js";
 
 const app = express();
 const PORT = 8000;
@@ -14,6 +15,7 @@ app.use("/api/users", userRouter);
 app.use("/api/stations", stationRouter);
 app.use("/api/trains", trainRouter);
 app.use("/api/wallets", walletRouter);
+app.use("/api/tickets", ticketRouter);
 
 // curl -X GET \
 // "http://localhost:8000/api/routes?from=1&to=5&optimize=cost"
