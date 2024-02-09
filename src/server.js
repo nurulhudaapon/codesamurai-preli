@@ -27,6 +27,7 @@ app.get("/api/routes", (req, res) => {
       // total_time: graph[from][to].time,
       // stations: graph[from][to].path,
     });
+  } else if (optimized == "time") {
   }
 });
 
