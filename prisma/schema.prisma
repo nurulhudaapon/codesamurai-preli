@@ -10,71 +10,120 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model books {
-  id    Int    @id @default(autoincrement())
-  title String
-  author String
-  genre String
-  price Float
-}
-
+// Original JSON Response:
+// /*
 // {
 // "user_id": integer, # user's numeric id
 // "user_name": string, # user's full name
 // "balance": integer # user's wallet balance
 // }
+// */
 
+// Define the User model
 model users {
-  id        Int    @id @default(autoincrement())
-  user_id   Int
+  user_id   Int       @id
   user_name String
   balance   Int
+  tickets   tickets[]
 }
 
-
+// Original JSON Response:
+// /*
 // {
 // "station_id": integer, # station's numeric id
 // "station_name": string, # station's name
 // "longitude": float, # coordinate longitude
 // "latitude": float # coordinate latitude
 // }
+// */
 
+// Define the Station model
 model stations {
-  id           Int     @id @default(autoincrement())
-  station_id   Int
-  station_name String
-  longitude    Float
-  latitude     Float
+  station_id      Int               @id
+  station_name    String
+  longitude       Float
+  latitude        Float
+  stops           stops[]
+  station_tickets station_tickets[]
 }
 
+// Original JSON Response:
+// /*
 // {
 // "train_id": integer, # train's numeric id
 // "train_name": string, # train's name
 // "capacity": integer, # seating capacity
-// "stops": [ # list of stops
+// "service_start": string, # service start time
+// "service_ends": string, # service end time
+// "num_stations": integer # number of stops
+// }
+// */
+
+// Define the Train model
+model trains {
+  train_id   Int     @id
+  train_name String
+  capacity   Int
+  stops      stops[]
+}
+
+// Original JSON Response:
+// /*
 // {
 // "station_id": integer, # station's id
 // "arrival_time": string, # arrives at
 // "departure_time" string, # leaves at
 // "fare": integer # ticket cost
-// },
-// ]
 // }
+// */
 
-model trains {
-  id          Int      @id @default(autoincrement())
-  train_id    Int
-  train_name  String
-  capacity    Int
-  stops       stops[]
-}
-
+// Define the Stop model
 model stops {
   id             Int      @id @default(autoincrement())
-  station_id     Int
-  arrival_time   String
-  departure_time String
+  arrival_time   String?
+  departure_time String?
   fare           Int
-  trains         trains[]
+  station        stations @relation(fields: [station_id], references: [station_id])
+  station_id     Int
+  train          trains   @relation(fields: [train_id], references: [train_id])
+  train_id       Int
 }
 
+// Original JSON Response:
+// /*
+// {
+// "ticket_id": integer, # generate a unique integer ticket ID
+// "wallet_id": integer, # user's wallet id (same as user id)
+// "balance": integer, # remaining balance
+// "stations": [
+// {
+// "station_id": integer, # station's numeric id
+// "train_id": integer, # train's id user is riding
+// "arrival_time": string, # arrival time
+// "departure_time": string # departure time
+// },
+// ...
+// ]
+// }
+// */
+
+// Define the Ticket model
+model tickets {
+  ticket_id Int               @id @default(autoincrement())
+  user      users             @relation(fields: [wallet_id], references: [user_id])
+  wallet_id Int
+  balance   Int
+  stations  station_tickets[]
+}
+
+// Define the station_ticket model for Ticket's stations
+model station_tickets {
+  id             Int      @id @default(autoincrement())
+  station        stations @relation(fields: [station_id], references: [station_id])
+  station_id     Int
+  train_id       Int?
+  arrival_time   String?
+  departure_time String?
+  ticket         tickets  @relation(fields: [ticket_id], references: [ticket_id])
+  ticket_id      Int
+}
