@@ -174,9 +174,9 @@ Response Body:
 
 router.post("/", async (req, res) => {
   const { wallet_id, time_after, station_from, station_to } = req.body;
-  const wallet = await prisma.users.findUnique({
+    const wallet = await prisma.users.findUnique({
     where: {
-      id: wallet_id,
+      user_id: wallet_id,
     },
   });
 
