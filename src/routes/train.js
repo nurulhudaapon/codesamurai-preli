@@ -12,25 +12,6 @@ router.post("/", async (req, res) => {
   } = req.body;
 
   try {
-
-    // await prisma.stops.create({
-    //   data: {
-    //     arrival_time: stops[0].arrival_time,
-    //     departure_time: stops[0].departure_time,
-    //     fare: stops[0].fare,
-    //     train: {
-    //       connect: {
-    //         train_id,
-    //       }
-    //     },
-    //     station: {
-    //       connect: {
-    //         station_id: stops[0].station_id,
-    //       }
-    //     }
-    //   }
-    // })
-
     const newTrain = await prisma.trains.create({
       data: {
         train_id,
@@ -39,29 +20,36 @@ router.post("/", async (req, res) => {
       }
     });
 
-    await Promise.all(
-      stops.map((stop) => {
-        return prisma.stops.create({
-          data: {
-            arrival_time: stop.arrival_time,
-            departure_time: stop.departure_time,
-            fare: stop.fare,
-            train: {
-              connect: {
-                train_id,
-              }
-            },
-            station: {
-              connect: {
-                station_id: stop.station_id,
-              }
+    for (let index = 0; index < stops.length; index++) {
+      await prisma.stops.create({
+        data: {
+          arrival_time: stops[index].arrival_time,
+          departure_time: stops[index].departure_time,
+          fare: stops[index].fare,
+          train: {
+            connect: {
+              train_id,
+            }
+          },
+          station: {
+            connect: {
+              station_id: stops[index].station_id,
             }
           }
-        })
+        }
       })
-    );
+    }
 
-    res.status(201).json(newTrain);
+    const times = stops.flatMap((stop) => ([stop.arrival_time, stop.departure_time])).filter(Boolean).sort();
+    const startTime = times[0];
+    const endTime = times[times.length - 1]
+
+    res.status(201).json({
+      ...newTrain,
+      "service_start": startTime,
+      "service_ends": endTime,
+      "num_stations": stops.length
+    });
 
   } catch (error) {
     console.log(error);
