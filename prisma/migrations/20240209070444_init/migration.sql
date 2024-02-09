@@ -1,10 +1,8 @@
 -- CreateTable
 CREATE TABLE "books" (
-    "id" SERIAL NOT NULL,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "title" TEXT NOT NULL,
     "author" TEXT NOT NULL,
     "genre" TEXT NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
-
-    CONSTRAINT "books_pkey" PRIMARY KEY ("id")
+    "price" REAL NOT NULL
 );

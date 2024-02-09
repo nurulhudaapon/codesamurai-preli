@@ -1,6 +1,8 @@
 // express routes for book
 import express from "express";
-import { prisma } from "../db";
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
 
 const router = express.Router();
 
@@ -65,10 +67,10 @@ router.get('/', async (req, res) => {
   delete filterQuery.sort;
   delete filterQuery.order;
 
-  const option: Parameters<typeof prisma.books.findMany>[0] = {
+  const option = {
     where: filterQuery,
     orderBy: {
-      [sort as string]: String(order || 'asc').toLowerCase()
+      [sort]: String(order || 'asc').toLowerCase()
     }
   };
 
@@ -77,4 +79,4 @@ router.get('/', async (req, res) => {
   res.status(200).json({ books })
 })
 
-export const bookRouter = router;
+export { router  as bookRouter };
