@@ -1,5 +1,7 @@
 import { TEST_CASES } from "./data";
-const HOST = "http://localhost:8000";
+// const HOST = "http://localhost:8000"; // For local testing
+const HOST = "http://host.docker.internal:8000"; // For devcontainer
+
 describe("API", () => {
   TEST_CASES.forEach((tc) => {
     it(tc.name, async () => {
