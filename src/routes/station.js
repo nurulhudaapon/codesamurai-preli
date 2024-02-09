@@ -17,6 +17,7 @@ router.post("/", async (req, res) => {
     });
     res.status(201).json(newStation);
   } catch (error) {
+    console.log(error);
     res.status(400).json({ message: "" });
   }
 });
