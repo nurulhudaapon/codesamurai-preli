@@ -54,6 +54,46 @@ const TEST_CASES = [
     },
   },
   {
+    name: "should create a station",
+    path: "/api/stations",
+    method: "post",
+    body: {
+      station_id: 2,
+      station_name: "Motijheel",
+      longitude: 90.417458,
+      latitude: 23.73333,
+    },
+    expected: {
+      status: 201,
+      body: {
+        station_id: 2,
+        station_name: "Motijheel",
+        longitude: 90.417458,
+        latitude: 23.73333,
+      },
+    },
+  },
+  {
+    name: "should create a station",
+    path: "/api/stations",
+    method: "post",
+    body: {
+      station_id: 3,
+      station_name: "Rajarbagh",
+      longitude: 90.4166667,
+      latitude: 23.7333333,
+    },
+    expected: {
+      status: 201,
+      body: {
+        station_id: 3,
+        station_name: "Rajarbagh",
+        longitude: 90.4166667,
+        latitude: 23.7333333,
+      },
+    },
+  },
+  {
     name: "List all stations - success",
     path: "/api/stations",
     method: "get",
